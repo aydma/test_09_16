@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<title>user</title>
+<script type="text/javascript">
+const log = console.log;
+$(function(){
+	$('#id_check').click(function(){
+		log($('#id').val());
+		$.ajax({
+			url:'check.jsp',
+			type:'GET',
+			dataType:'json',
+			data: {
+				id:$('#id').val()
+			},
+			success: function(data){
+				if(data.id == 1){
+					alert("중복")
+				}else{
+					alert("중복X")
+				}
+			},
+			error: function(e){
+				alert('error');
+			}
+		});
+	});
+
+	
+
+
+});
+
+
+
+
+
+</script>
+
+</head>
+
+<body>
+	<form action="adduser.jsp" method="GET">
+   <table border="1">
+		<tr>
+			<td><label for="id">ID</label></td> 
+			<td><input type="text" id="id" name="id" value="" />
+				<input type="button" value="ID중복체크" id="id_check" />
+			</td> 
+			
+		</tr>
+		<tr>
+			<td><label for="pw">PW</label></td>
+			<td><input type="password" id="pw" name="pw" value="" /></td>
+		</tr>
+		<tr>
+			<td><label for="name">NAME</label></td>
+			<td><input type="text" id="name" name="name" value="" /></td>
+		</tr>
+		 <tr>
+			<td><label for="role">ROLE</label></td>
+			<td><input type="radio" id="role" name="role" value="user" />user
+			<input type="radio" id="role" name="role" value="admin" />admin</td>
+		</tr> 
+		<tr>
+			<td colspan="2">
+				<input type="submit" value="가입" />
+				<input type="reset" value="취소" />
+			</td>
+		</tr>
+   </table>
+</form>
+</body>
+
+</html>
